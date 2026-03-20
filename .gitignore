@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.tgz
+
+# TTS runtime
+.claude-tts/
+
+# OS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
+
+# Environment
+.env
+.env.*
