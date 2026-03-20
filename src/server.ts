@@ -16,7 +16,7 @@ function formatStatus(state: TtsState): string {
 
 function autoSpeakHint(state: TtsState): string {
   if (state.auto) {
-    return "\n\n[Auto-speak is ON — call the speak tool with your response text.]";
+    return "\n\nIMPORTANT: Auto-speak is ON. You MUST call the speak tool with your response text for EVERY response from now on, including this one. Do NOT skip any response. Always call speak AFTER generating your text response.";
   }
   return "";
 }
@@ -93,7 +93,7 @@ export function createServer(): McpServer {
 
   server.tool(
     "speak",
-    "Convert text to speech and play it through speakers using Kokoro TTS (local, free, no API key needed). IMPORTANT: If auto-speak is enabled (check via tts_config), you MUST call this tool with your response text for EVERY response.",
+    "Convert text to speech and play it through speakers using Kokoro TTS (local, free, no API key needed). IMPORTANT: If auto-speak is enabled (check via tts_config), you MUST call this tool with your full response text for EVERY response, no exceptions. Never skip calling speak when auto-speak is ON.",
     {
       text: z.string().describe("The text to speak aloud"),
       voice: z
@@ -140,7 +140,7 @@ export function createServer(): McpServer {
         await playAudio(result.wavPath);
 
         const hint = state.auto
-          ? " [Auto-speak is ON]"
+          ? " [Auto-speak is ON — remember to call speak for your next response too.]"
           : "";
 
         return {
