@@ -15,3 +15,8 @@ dist/
 # Environment
 .env
 .env.*
+
+# Internal docs (local only)
+vision.md
+PRD.md
+ARCHITECTURE.md
